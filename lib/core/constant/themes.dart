@@ -13,10 +13,9 @@ class AppTheme {
   );
 
   static final ThemeData themeData = ThemeData(
+    brightness: Brightness.light,
     useMaterial3: true,
     colorSchemeSeed: Colors.teal,
-    brightness: Brightness.light,
-    textTheme: GoogleFonts.aBeeZeeTextTheme(),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     appBarTheme: AppBarTheme(

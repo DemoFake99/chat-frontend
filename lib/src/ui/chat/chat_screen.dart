@@ -4,6 +4,8 @@ import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import 'package:uuid/uuid.dart';
 
+import '../../../core/components/app_text_form_field.dart';
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
@@ -93,8 +95,9 @@ class _ChatScreenState extends State<ChatScreen> {
                           margin: const EdgeInsets.symmetric(
                               vertical: 5, horizontal: 10),
                           decoration: BoxDecoration(
-                            color:
-                                isMyMessage ? Colors.teal[200] : Colors.grey[300],
+                            color: isMyMessage
+                                ? Colors.teal.shade200
+                                : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Column(
@@ -123,12 +126,9 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _messageController,
-                      decoration: const InputDecoration(
-                        hintText: 'Type a message...',
-                        border: OutlineInputBorder(),
-                      ),
+                    child: AppTextFormField(
+                      textEditingController: _messageController,
+                      placeholder: 'Type a message...',
                     ),
                   ),
                   IconButton.filled(
