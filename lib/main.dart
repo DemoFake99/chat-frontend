@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'core/constant/themes.dart';
 import 'screens/chat_screen.dart';
 
 void main() async {
@@ -14,10 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat App',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      title: 'A-Chat',
+      theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
       home: const ChatScreen(),
     );

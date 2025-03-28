@@ -64,78 +64,82 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Chat')),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final message = messages[index];
-                bool isMyMessage =
-                    message['deviceId'] == myDeviceId.substring(0, 6);
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('A-Chat'),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final message = messages[index];
+                  bool isMyMessage =
+                      message['deviceId'] == myDeviceId.substring(0, 6);
 
-                return Align(
-                  alignment: isMyMessage
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: isMyMessage
-                        ? CrossAxisAlignment.end
-                        : CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                          color:
-                              isMyMessage ? Colors.blue[200] : Colors.grey[300],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (!isMyMessage)
-                              Text(
-                                message['deviceId'].toString(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
+                  return Align(
+                    alignment: isMyMessage
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: isMyMessage
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          decoration: BoxDecoration(
+                            color:
+                                isMyMessage ? Colors.teal[200] : Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (!isMyMessage)
+                                Text(
+                                  message['deviceId'].toString(),
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
-                            Text(message['text']),
-                          ],
+                              Text(message['text']),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: const InputDecoration(
-                      hintText: 'Type a message...',
-                      border: OutlineInputBorder(),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _messageController,
+                      decoration: const InputDecoration(
+                        hintText: 'Type a message...',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send, color: Colors.blue),
-                  onPressed: sendMessage,
-                ),
-              ],
+                  IconButton.filled(
+                    icon: const Icon(Icons.send_rounded),
+                    onPressed: sendMessage,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
